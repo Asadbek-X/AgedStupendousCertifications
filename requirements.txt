@@ -3,6 +3,6 @@ SQLAlchemy[asyncio]==2.0.31
 asyncpg==0.29.0
 python-dotenv==1.0.1
 aiofiles==23.2.1
-Pillow==10.3.0
+Pillow==10.2.0
 aiosqlite
 flask
