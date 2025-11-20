@@ -389,3 +389,8 @@ class Database:
                 'movies_count': movies_count,
                 'total_views': total_views
             }
+
+async def get_movies_by_genre(self, genre: str):
+    query = select(Movie).where(Movie.genre.ilike(f"%{genre}%"))
+    result = await self.session.execute(query)
+    return result.scalars().all()

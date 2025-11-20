@@ -1,6 +1,7 @@
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup, KeyboardButton
 from aiogram.utils.keyboard import InlineKeyboardBuilder, ReplyKeyboardBuilder
 
+
 def get_main_menu_kb() -> ReplyKeyboardMarkup:
     """Asosiy menu klaviaturasi"""
     kb = ReplyKeyboardBuilder()
@@ -9,8 +10,10 @@ def get_main_menu_kb() -> ReplyKeyboardMarkup:
     kb.button(text="🆕 Yangi kinolar")
     kb.button(text="📊 Statistika")
     kb.button(text="ℹ️ Ma'lumot")
+
     kb.adjust(2, 2, 1)
     return kb.as_markup(resize_keyboard=True)
+
 
 def get_admin_panel_kb() -> InlineKeyboardMarkup:
     """Admin panel klaviaturasi"""
@@ -24,11 +27,13 @@ def get_admin_panel_kb() -> InlineKeyboardMarkup:
     kb.adjust(2)
     return kb.as_markup()
 
+
 def get_back_to_admin_kb() -> InlineKeyboardMarkup:
     """Admin panelga qaytish tugmasi"""
     kb = InlineKeyboardBuilder()
     kb.button(text="⬅️ Ortga", callback_data="admin_panel_back")
     return kb.as_markup()
+
 
 def get_cancel_kb() -> InlineKeyboardMarkup:
     """Bekor qilish tugmasi"""
@@ -36,16 +41,20 @@ def get_cancel_kb() -> InlineKeyboardMarkup:
     kb.button(text="❌ Bekor qilish", callback_data="cancel")
     return kb.as_markup()
 
-def get_movie_actions_kb(movie_code: int, user_rated: bool = False) -> InlineKeyboardMarkup:
+
+def get_movie_actions_kb(movie_code: int,
+                         user_rated: bool = False) -> InlineKeyboardMarkup:
     """Kino uchun amallar klaviaturasi"""
     kb = InlineKeyboardBuilder()
     kb.button(text="⭐️ Baho berish", callback_data=f"rate_{movie_code}")
     if user_rated:
-        kb.button(text="📝 Bahoni o'zgartirish", callback_data=f"edit_rate_{movie_code}")
+        kb.button(text="📝 Bahoni o'zgartirish",
+                  callback_data=f"edit_rate_{movie_code}")
     kb.button(text="📊 Statistika", callback_data=f"movie_stats_{movie_code}")
     kb.button(text="↗️ Ulashish", switch_inline_query=f"code_{movie_code}")
     kb.adjust(2)
     return kb.as_markup()
+
 
 def get_rating_kb(movie_code: int) -> InlineKeyboardMarkup:
     """Baho berish klaviaturasi"""
@@ -56,12 +65,12 @@ def get_rating_kb(movie_code: int) -> InlineKeyboardMarkup:
     kb.adjust(5, 1)
     return kb.as_markup()
 
+
 def get_genre_kb() -> InlineKeyboardMarkup:
     """Janr tanlash klaviaturasi"""
     genres = [
-        "🎭 Drama", "😂 Komediya", "🔫 Jangari",
-        "💕 Romantik", "😱 Qo'rqinchli", "🔬 Fantastika",
-        "🎪 Sarguzasht", "🎬 Thriller", "🎨 Multfilm"
+        "🎭 Drama", "😂 Komediya", "🔫 Jangari", "💕 Romantik", "😱 Qo'rqinchli",
+        "🔬 Fantastika", "🎪 Sarguzasht", "🎬 Thriller", "🎨 Multfilm"
     ]
     kb = InlineKeyboardBuilder()
     for genre in genres:
@@ -70,21 +79,31 @@ def get_genre_kb() -> InlineKeyboardMarkup:
     kb.adjust(3)
     return kb.as_markup()
 
-def get_pagination_kb(current_page: int, total_pages: int, prefix: str = "page") -> InlineKeyboardMarkup:
+
+def get_pagination_kb(current_page: int,
+                      total_pages: int,
+                      prefix: str = "page") -> InlineKeyboardMarkup:
     """Pagination klaviaturasi"""
     kb = InlineKeyboardBuilder()
 
     buttons = []
     if current_page > 1:
-        buttons.append(InlineKeyboardButton(text="⬅️", callback_data=f"{prefix}_{current_page-1}"))
+        buttons.append(
+            InlineKeyboardButton(text="⬅️",
+                                 callback_data=f"{prefix}_{current_page-1}"))
 
-    buttons.append(InlineKeyboardButton(text=f"{current_page}/{total_pages}", callback_data="current_page"))
+    buttons.append(
+        InlineKeyboardButton(text=f"{current_page}/{total_pages}",
+                             callback_data="current_page"))
 
     if current_page < total_pages:
-        buttons.append(InlineKeyboardButton(text="➡️", callback_data=f"{prefix}_{current_page+1}"))
+        buttons.append(
+            InlineKeyboardButton(text="➡️",
+                                 callback_data=f"{prefix}_{current_page+1}"))
 
     kb.row(*buttons)
     return kb.as_markup()
+
 
 def get_confirmation_kb(action: str) -> InlineKeyboardMarkup:
     """Tasdiqlash klaviaturasi"""
@@ -94,6 +113,7 @@ def get_confirmation_kb(action: str) -> InlineKeyboardMarkup:
     kb.adjust(2)
     return kb.as_markup()
 
+
 def get_broadcast_kb() -> InlineKeyboardMarkup:
     """Rassilka klaviaturasi"""
     kb = InlineKeyboardBuilder()
@@ -102,6 +122,7 @@ def get_broadcast_kb() -> InlineKeyboardMarkup:
     kb.button(text="❌ Bekor qilish", callback_data="admin_panel_back")
     kb.adjust(2, 1)
     return kb.as_markup()
+
 
 def get_quality_kb() -> InlineKeyboardMarkup:
     """Sifat tanlash klaviaturasi"""

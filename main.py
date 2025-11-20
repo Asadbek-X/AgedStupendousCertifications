@@ -69,8 +69,9 @@ async def cmd_start(message: Message, db: Database, state: FSMContext):
         except:
             pass
 
-    await message.answer(f"👋 Xush kelibsiz, {message.from_user.first_name}!",
-                         reply_markup=get_main_menu_kb())
+    await message.answer(
+        f"👋 Xush kelibsiz, {message.from_user.first_name} Kino codini kiriting!",
+        reply_markup=get_main_menu_kb())
 
 
 @dp.callback_query(F.data == "check_fsub")
